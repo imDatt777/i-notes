@@ -1,0 +1,14 @@
+{
+  "name": "i-notes",
+  "version": "1.0.0",
+  "description": "Your notes keeper on cloud",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
