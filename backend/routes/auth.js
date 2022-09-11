@@ -1,10 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
-const { findOne } = require("../models/Notes");
+const bcrypt = require("bcryptjs");
+var jwt = require("jsonwebtoken");
 
 // Importing Schema
 const User = require("../models/User");
+
+const JWT_SECRET_KEY = "ThisIsTheBiggestSecretEver";
 
 // Create a User using POST '/api/auth/createUser'. No Login required
 router.post(
@@ -33,14 +36,26 @@ router.post(
           .json({ error: "Sorry, a user with same email already exists" });
       }
 
+      // Hash generated secure password
+      const salt = await bcrypt.genSalt(10);
+      const secPass = await bcrypt.hash(req.body.password, salt);
+
       // User creation if validations passes
       user = await User.create({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password,
+        password: secPass,
       });
 
-      res.json(user);
+      // Sending Authentication token
+      const data = {
+        user: {
+          id: user.id,
+        },
+      };
+
+      const authToken = jwt.sign(data, JWT_SECRET_KEY);
+      res.json(authToken);
     } catch (err) {
       console.error(err.message);
       res.status(500).send("Something went wrong!");
