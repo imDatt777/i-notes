@@ -2,7 +2,10 @@ const express = require("express");
 const router = express.Router();
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
-var jwt = require("jsonwebtoken");
+const jwt = require("jsonwebtoken");
+
+// Importing middleware
+const fetchUser = require("../middleware/fetchUser");
 
 // Importing Schema
 const User = require("../models/User");
@@ -85,7 +88,7 @@ router.post(
 
     try {
       // Find if a user with entered email exists
-      const user =await User.findOne({ email });
+      const user = await User.findOne({ email });
       if (!user) {
         return res
           .status(400)
@@ -118,5 +121,20 @@ router.post(
     }
   }
 );
+
+// *********************************************ROUTE-3*********************************************
+// Fetch logged in user details using POST '/api/auth/fetchuser'. Login required
+router.post("/fetchuser", fetchUser, async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    // To fetch details excluding password
+    const user = User.findById(userId).select("-password");
+    res.send(user);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Internal Server Error !");
+  }
+});
 
 module.exports = router;
