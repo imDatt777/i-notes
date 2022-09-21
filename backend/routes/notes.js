@@ -10,6 +10,7 @@ const Note = require("../models/Note");
 
 // *********************************************ROUTE-1*********************************************
 // Fetch all notes using GET '/api/notes/fetchallnotes'. Login required
+
 router.get("/fetchallnotes", fetchUser, async (req, res) => {
   try {
     const notes = await Note.find({ user: req.user.id });
@@ -22,6 +23,7 @@ router.get("/fetchallnotes", fetchUser, async (req, res) => {
 
 // *********************************************ROUTE-2*********************************************
 // Add a note using POST '/api/notes/addnote'. Login required
+
 router.post(
   "/addnote",
   fetchUser,
@@ -52,6 +54,7 @@ router.post(
 
 // *********************************************ROUTE-3*********************************************
 // Edit a note using PUT '/api/notes/editnote'. Login required
+
 router.put(
   "/editnote/:id",
   fetchUser,
@@ -107,5 +110,38 @@ router.put(
     }
   }
 );
+
+// *********************************************ROUTE-4*********************************************
+// Delete a note using DELETE '/api/notes/deletenote'. Login required
+
+router.delete("/deletenote/:id", fetchUser, async (req, res) => {
+  try {
+    // If there are errors, return bad request with errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    //   Finding the note that needs to be deleted
+    const note = await Note.findById(req.params.id);
+
+    // Checking if note even exists
+    if (!note) {
+      res.status(404).send("Not Found");
+    }
+
+    // Checking if the user is same who created the note
+    if (note.user.toString() !== req.user.id) {
+      res.status(401).send("Not allowed");
+    }
+
+    const deleteNote = await Note.findByIdAndDelete(req.params.id);
+
+    res.json({ Success: "Note has been deleted", note: deleteNote });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Something went wrong!");
+  }
+});
 
 module.exports = router;

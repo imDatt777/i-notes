@@ -14,6 +14,7 @@ const JWT_SECRET_KEY = "ThisIsTheBiggestSecretEver";
 
 // *********************************************ROUTE-1*********************************************
 // Create a User using POST '/api/auth/createUser'. No Login required
+
 router.post(
   "/createuser",
   // validations
@@ -69,6 +70,7 @@ router.post(
 
 // *********************************************ROUTE-2*********************************************
 // Authenticate a User using POST '/api/auth/login'.
+
 router.post(
   "/login",
   // validations
@@ -124,6 +126,7 @@ router.post(
 
 // *********************************************ROUTE-3*********************************************
 // Fetch logged in user details using POST '/api/auth/fetchuser'. Login required
+
 router.post("/fetchuser", fetchUser, async (req, res) => {
   try {
     const userId = req.user.id;
