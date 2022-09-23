@@ -1,9 +1,13 @@
-import './App.css';
+// Importing base styling
+import "./styles/base.scss";
+
+// Importing components
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
     <div className="App">
-      <h1>This is i-notes</h1>
+      <Navbar />
     </div>
   );
 }
