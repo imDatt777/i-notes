@@ -2,8 +2,6 @@
 
 .navbar {
     background-color: rgb(92, 94, 97);
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
     display: flex;
     align-items: center;
     padding: 0 20px;
@@ -85,7 +83,7 @@
     }
 }
 
-//  Styling for large tablet view
+//  Styling for tablet view
 @media (min-width: 426px) and (max-width: 1024px) {
     .navbar {
         .header-logo-wrapper {
@@ -159,6 +157,7 @@
     }
 }
 
+// Styling for desktop view
 @media (min-width: 1025px) {
     .navbar {
         .header-logo-wrapper {
