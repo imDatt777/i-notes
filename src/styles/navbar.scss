@@ -1,5 +1,7 @@
+// Styling for mobile view
+
 .navbar {
-    background-color: rgb(50, 51, 53);
+    background-color: rgb(92, 94, 97);
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     display: flex;
@@ -9,37 +11,34 @@
     .header-logo-wrapper {
         display: flex;
         align-items: center;
-        width: 15%;
+        width: 60%;
 
         .header-title {
-            font-family: sans-serif;
-            font-size: 36px;
-            line-height: 40px;
-            margin-right: 20px;
             color: white;
+            font-family: sans-serif;
+            font-size: 16px;
+            line-height: 20px;
         }
 
         .notes-icon {
-            height: 40px;
-            width: 40px;
+            height: 28px;
+            width: 28px;
+            margin-right: 10px;
         }
     }
 
     .search-bar-wrapper {
-        background-color: rgba(232,234,237,.08);
-        border: 1px solid light-grey;
-        border-radius: 10px;
-        margin-left: 10%;
-        padding: 0 15px;
+        background: transparent;
+        margin: 0;
+        padding: 0;
         display: flex;
         align-items: center;
-        width: 50%;
+        justify-content: flex-end;
 
         .search-icon {
-            padding: 7px;
-            height: 25px;
-            width: 25px;
-            margin-right: 10px;
+            height: 20px;
+            width: 20px;
+            padding: 4px;
             cursor: pointer;
 
             &:hover {
@@ -49,33 +48,11 @@
         }
 
         .search {
-            background: transparent;
-            font-family: sans-serif;
-            font-size: 20px;
-            line-height: 28px;
-            border: none;
-            height: 50px;
-            width: 95%;
-
-            &::placeholder {
-                color: light-grey;
-            }
-
-            &:focus {
-                outline: none;
-            }
+            display: none;
         }
 
         .cross-icon {
-            height: 20px;
-            width: 20px;
-            cursor: pointer;
-            padding: 7px;
-
-            &:hover {
-                background-color: lightgray;
-                border-radius: 50%;
-            }
+            display: none;
         }
     }
 
@@ -85,11 +62,10 @@
         margin-left: auto;
 
         .setting-icon {
-            height: 28px;
-            width: 28px;
+            height: 20px;
+            width: 20px;
             margin-right: 40px;
             cursor: pointer;
-            padding: 7px;
 
             &:hover {
                 background-color: lightgray;
@@ -101,9 +77,170 @@
             .avatar {
                 background-color: wheat;
                 border-radius: 50%;
-                height: 40px;
-                width: 40px;
                 cursor: pointer;
+                height: 28px;
+                width: 28px;
+            }
+        }
+    }
+}
+
+//  Styling for large tablet view
+@media (min-width: 426px) and (max-width: 1024px) {
+    .navbar {
+        .header-logo-wrapper {
+            width: 25%;
+
+            .header-title {
+                font-size: 20px;
+                line-height: 24px;
+            }
+
+            .notes-icon {
+                height: 36px;
+                width: 36px;
+            }
+        }
+
+        .search-bar-wrapper {
+            background-color: rgba(232, 234, 237, 0.08);
+            border: 1px solid light-grey;
+            border-radius: 10px;
+            padding: 0 15px;
+            width: 50%;
+
+            .search {
+                background: transparent;
+                display: block;
+                font-family: sans-serif;
+                font-size: 14px;
+                height: 36px;
+                line-height: 18px;
+                border: none;
+                width: 95%;
+
+                &::placeholder {
+                    color: #222;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .cross-icon {
+                height: 15px;
+                width: 15px;
+                padding: 4px;
+                display: block;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: lightgray;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .header-profile-section {
+            .setting-icon {
+                height: 22px;
+                width: 22px;
+                padding: 4px;
+            }
+
+            .profile-avatar {
+                .avatar {
+                    height: 36px;
+                    width: 36px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 1025px) {
+    .navbar {
+        .header-logo-wrapper {
+            width: 15%;
+
+            .header-title {
+                font-size: 36px;
+                line-height: 40px;
+            }
+
+            .notes-icon {
+                height: 40px;
+                margin-right: 20px;
+                width: 40px;
+            }
+        }
+
+        .search-bar-wrapper {
+            background-color: rgba(232, 234, 237, 0.08);
+            border: 1px solid light-grey;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 15px;
+            width: 50%;
+            margin: 0 auto;
+
+            .search-icon {
+                padding: 7px;
+                height: 25px;
+                width: 25px;
+                margin-right: 10px;
+            }
+
+            .search {
+                background: transparent;
+                display: block;
+                font-family: sans-serif;
+                font-size: 20px;
+                height: 50px;
+                line-height: 28px;
+                border: none;
+                width: 95%;
+
+                &::placeholder {
+                    color: #222;
+                }
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            .cross-icon {
+                display: block;
+                height: 20px;
+                width: 20px;
+                cursor: pointer;
+                padding: 7px;
+
+                &:hover {
+                    background-color: lightgray;
+                    border-radius: 50%;
+                }
+            }
+        }
+
+        .header-profile-section {
+            margin-left: 0;
+
+            .setting-icon {
+                height: 28px;
+                width: 28px;
+                padding: 7px;
+            }
+
+            .profile-avatar {
+                .avatar {
+                    height: 40px;
+                    width: 40px;
+                }
             }
         }
     }

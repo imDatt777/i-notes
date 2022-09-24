@@ -5,16 +5,16 @@ import "../styles/navbar.scss";
 
 // Importing assets
 import mainIcon from "../assets/notes-icon.png";
-import searchIcon from "../assets/search-icon.png";
-import settingIcon from "../assets/setting-icon.png";
-import crossIcon from "../assets/cross-icon.png";
+import searchIcon from "../assets/search-icon.svg";
+import settingIcon from "../assets/setting-icon.svg";
+import crossIcon from "../assets/cross-icon.svg";
 
 const Navbar = () => {
     return (
         <div className="navbar">
             <div className="header-logo-wrapper">
-                <h2 className="header-title">i-notes</h2>
                 <img className="notes-icon" src={mainIcon} alt="Notes Icon" />
+                <h2 className="header-title">i-notes</h2>
             </div>
             <div className="search-bar-wrapper">
                 <img

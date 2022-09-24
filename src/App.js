@@ -3,13 +3,15 @@ import "./styles/base.scss";
 
 // Importing components
 import Navbar from "./components/Navbar";
+import Sidebar from "./components/Sidebar";
 
 function App() {
-  return (
-    <div className="App">
-      <Navbar />
-    </div>
-  );
+    return (
+        <div className="App">
+            <Navbar />
+            <Sidebar />
+        </div>
+    );
 }
 
 export default App;
