@@ -1,0 +1,61 @@
+// Styling for mobile view
+
+.note-wrapper {
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 2px 0 4px 0 rgba(0, 0, 0, 0.5);
+    max-width: 400px;
+    margin-bottom: 20px;
+
+    .note-title {
+        padding-bottom: 5px;
+        border-bottom: 1px solid lightgrey;
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .note-description {
+        padding-top: 5px;
+        text-align: justify;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+    .icons-wrapper {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 10px;
+
+        img {
+            height: 16px;
+            width: 16px;
+            cursor: pointer;
+        }
+
+        .edit-icon {
+            margin-right: 10px;
+        }
+    }
+}
+
+//  Styling for desktop view
+@media (min-width: 1025) {
+    .note-wrapper {
+        .note-title {
+            font-size: 20px;
+            line-height: 24px;
+        }
+
+        .note-description {
+            font-size: 18px;
+            line-height: 20px;
+        }
+
+        .icons-wrapper {
+            img {
+                height: 20px;
+                width: 20px;
+            }
+        }
+    }
+}
