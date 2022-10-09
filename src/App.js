@@ -5,6 +5,7 @@ import "./styles/base.scss";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import NoteCard from "./components/NoteCard";
+import AddNote from "./components/AddNote";
 
 function App() {
     return (
@@ -14,6 +15,7 @@ function App() {
                 <div className="sidebar-wrapper">
                     <Sidebar />
                 </div>
+                <AddNote />
                 <div className="notes-wrapper">
                     <NoteCard />
                     <NoteCard />

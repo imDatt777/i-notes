@@ -1,0 +1,128 @@
+.create-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 25px;
+    margin: 30px 20px 10px;
+    border: 2px solid grey;
+    border-radius: 10px;
+
+    p {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .add-icon {
+        height: 20px;
+        width: 20px;
+        cursor: pointer;
+        position: relative;
+    }
+    .add-icon::before,
+    .add-icon::after {
+        content: " ";
+        width: 20px;
+        height: 4px;
+        background-color: #000;
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transition: all 0.15s cubic-bezier(0.42, 0, 0.58, 1);
+        opacity: 1;
+        border-radius: 2px;
+    }
+    .add-icon::before {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .add-icon::after {
+        transform: translate(-50%, -50%);
+    }
+}
+
+.expanded {
+    margin: 30px 20px 10px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        border: 2px solid gray;
+        padding: 10px 25px;
+        border-radius: 10px;
+
+        input,
+        textarea {
+            border: none;
+            padding: 5px;
+            background-color: white;
+            transition: 300ms linear;
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        textarea {
+            margin: 5px 0;
+            height: 50px;
+            resize: none;
+            overflow: hidden;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            font-family: sans-serif;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        input:focus,
+        textarea:focus {
+            outline: none;
+        }
+    }
+
+    .tick {
+        align-self: flex-end;
+        display: inline-block;
+        transform: rotate(45deg);
+        height: 16px;
+        width: 8px;
+        border-bottom: 4px solid #78b13f;
+        border-right: 4px solid #78b13f;
+    }
+}
+
+//  Styling for tablet view
+@media (min-width: 426px) and (max-width: 1024px) {
+    .create-wrapper,
+    .expanded {
+        margin: 20px 20%;
+    }
+}
+
+// Styling for Desktop view
+@media (min-width: 1025px) {
+    .create-wrapper {
+        margin: 20px 30%;
+
+        p {
+            font-size: 20px;
+            line-height: 24px;
+        }
+    }
+
+    .expanded {
+        margin: 20px 30%;
+
+        form {
+            input,
+            textarea,
+            input::placeholder,
+            textarea::placeholder {
+                font-family: sans-serif;
+                font-size: 18px;
+                line-height: 24px;
+            }
+        }
+    }
+}
