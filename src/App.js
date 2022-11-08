@@ -1,3 +1,7 @@
+// Importing packages
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 // Importing base styling
 import "./styles/base.scss";
 
@@ -6,25 +10,39 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import NoteCard from "./components/NoteCard";
 import AddNote from "./components/AddNote";
+import AuthForm from "./components/AuthForm";
 
-function App() {
+const App = () => {
     return (
-        <div className="App">
-            <Navbar />
-            <div className="main-container">
-                <div className="sidebar-wrapper">
-                    <Sidebar />
-                </div>
-                <AddNote />
-                <div className="notes-wrapper">
-                    <NoteCard />
-                    <NoteCard />
-                    <NoteCard />
-                    <NoteCard />
-                </div>
+        <Router>
+            <div className="App">
+                <Routes>
+                    <Route exact path="/" element={<AuthForm />} />
+                    <Route
+                        exact
+                        path="/notes"
+                        element={
+                            <>
+                                <Navbar />
+                                <div className="main-container">
+                                    <div className="sidebar-wrapper">
+                                        <Sidebar />
+                                    </div>
+                                    <AddNote />
+                                    <div className="notes-wrapper">
+                                        <NoteCard />
+                                        <NoteCard />
+                                        <NoteCard />
+                                        <NoteCard />
+                                    </div>
+                                </div>
+                            </>
+                        }
+                    />
+                </Routes>
             </div>
-        </div>
+        </Router>
     );
-}
+};
 
 export default App;
