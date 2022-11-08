@@ -13,11 +13,13 @@ body {
 
 .main-container {
     position: relative;
+    padding-top: 20px;
 
     .sidebar-wrapper {
         display: none;
         backdrop-filter: blur(4px);
         position: absolute;
+        top: 0;
         width: 100%;
         z-index: 10;
     }
