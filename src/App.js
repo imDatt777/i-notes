@@ -18,6 +18,7 @@ const App = () => {
             <div className="App">
                 <Routes>
                     <Route exact path="/" element={<AuthForm />} />
+                    <Route exact path="/signup" element={<AuthForm isNew />} />
                     <Route
                         exact
                         path="/notes"
