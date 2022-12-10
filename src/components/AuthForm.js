@@ -1,24 +1,36 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // Import styling
 import "../styles/authform.scss";
 
 const AuthForm = (props) => {
     const { isNew = false } = props;
+    const navigate = useNavigate();
 
-    const [credentials, setCredentials] = useState({ email: "", password: "" });
+    const [loginCredentials, setLoginCredentials] = useState({
+        email: "",
+        password: "",
+    });
+    const [signupCredentials, setSignupCredentials] = useState({
+        name: "",
+        email: "",
+        password: "",
+        cpassword: "",
+    });
 
+    /* Logic for user login */
     const LoginHandler = async (event) => {
         event.preventDefault();
 
         const response = await fetch("/api/auth/login", {
             method: "POST",
             headers: {
-                'Content-Type': 'application/json'
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                email: credentials.email,
-                password: credentials.password,
+                email: loginCredentials.email,
+                password: loginCredentials.password,
             }),
         });
 
@@ -26,9 +38,44 @@ const AuthForm = (props) => {
         console.log(json);
     };
 
-    const onChange = (event) => {
-        setCredentials({
-            ...credentials,
+    const onLoginChange = (event) => {
+        setLoginCredentials({
+            ...loginCredentials,
+            [event.target.name]: event.target.value,
+        });
+    };
+
+    /* Logic for user Sign Up */
+    const SignupHandler = async (event) => {
+        event.preventDefault();
+
+        const response = await fetch("/api/auth/createuser", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                name: signupCredentials.name,
+                email: signupCredentials.email,
+                password: signupCredentials.password,
+            }),
+        });
+
+        const json = await response.json();
+        console.log(json);
+
+        if (json.success) {
+            // Saving auth token and redirect to home
+            localStorage.setItem("token", json.authToken);
+            navigate("/home");
+        } else {
+            alert("Something went wrong");
+        }
+    };
+
+    const onSignupChange = (event) => {
+        setSignupCredentials({
+            ...signupCredentials,
             [event.target.name]: event.target.value,
         });
     };
@@ -43,27 +90,59 @@ const AuthForm = (props) => {
             <div className="form-wrapper">
                 {isNew ? (
                     <div className="signup-form">
-                        <form>
-                            <input type="text" placeholder="Username" />
-                            <input type="email" placeholder="Email" />
-                            <input type="password" placeholder="Password" />
+                        <form onSubmit={SignupHandler}>
+                            <input
+                                type="text"
+                                placeholder="Username"
+                                name="name"
+                                onChange={onSignupChange}
+                                value={signupCredentials.name}
+                            />
+                            <input
+                                type="email"
+                                placeholder="Email"
+                                name="email"
+                                onChange={onSignupChange}
+                                value={signupCredentials.email}
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="password"
+                                onChange={onSignupChange}
+                                value={signupCredentials.password}
+                            />
+                            <input
+                                type="password"
+                                placeholder="Password"
+                                name="cpassword"
+                                onChange={onSignupChange}
+                                value={signupCredentials.cpassword}
+                            />
                             <button type="submit">Sign Up</button>
                         </form>
+                        <p>
+                            Already a user?
+                            <span>
+                                {" "}
+                                <a href="/">Login</a>
+                            </span>
+                        </p>
                     </div>
                 ) : (
                     <div className="login-form">
                         <form onSubmit={LoginHandler}>
                             <input
                                 type="email"
-                                value={credentials.email}
-                                onChange={onChange}
+                                value={loginCredentials.email}
+                                onChange={onLoginChange}
                                 name="email"
                                 placeholder="Email"
                             />
                             <input
                                 type="password"
-                                value={credentials.password}
-                                onChange={onChange}
+                                value={loginCredentials.password}
+                                onChange={onLoginChange}
                                 name="password"
                                 placeholder="Password"
                             />

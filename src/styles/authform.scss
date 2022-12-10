@@ -47,6 +47,7 @@
 
     .signup-form,
     .login-form {
+        text-align: center;
         form {
             display: flex;
             flex-direction: column;
@@ -72,10 +73,7 @@
                 margin-top: 20px;
             }
         }
-    }
 
-    .login-form {
-        text-align: center;
         p {
             margin-top: 10px;
             font-family: sans-serif;

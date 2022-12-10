@@ -26,10 +26,13 @@ router.post(
         }),
     ],
     async (req, res) => {
+        // Success :- Defining whether Signup is successful or not
+        let success = false;
+
         // If there are errors, return bad request with errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ success, errors: errors.array() });
         }
 
         try {
@@ -37,6 +40,7 @@ router.post(
             let user = await User.findOne({ email: req.body.email });
             if (user) {
                 return res.status(400).json({
+                    success,
                     error: "Sorry, a user with same email already exists",
                 });
             }
@@ -59,8 +63,9 @@ router.post(
                 },
             };
 
+            // On successful Signup
             const authToken = jwt.sign(data, JWT_SECRET_KEY);
-            res.json(authToken);
+            res.json({ authToken, success: true });
         } catch (err) {
             console.error(err.message);
             res.status(500).send("Something went wrong!");
@@ -79,17 +84,17 @@ router.post(
         body("password", "Password cannot be blank").exists(),
     ],
     async (req, res) => {
+        // Success :- Defining whether login is successful or not
+        let success = false;
+
         // If there are errors, return bad request with errors
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
-            return res.status(400).json({ errors: errors.array() });
+            return res.status(400).json({ success, errors: errors.array() });
         }
 
         // Destructuring email and password
         const { email, password } = req.body;
-
-        // Success :- Defining whether login is successful or not
-        let success = false;
 
         try {
             // Find if a user with entered email exists
