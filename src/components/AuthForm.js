@@ -10,13 +10,13 @@ const AuthForm = (props) => {
 
     const [loginCredentials, setLoginCredentials] = useState({
         email: "",
-        password: "",
+        password: ""
     });
     const [signupCredentials, setSignupCredentials] = useState({
         name: "",
         email: "",
         password: "",
-        cpassword: "",
+        cpassword: ""
     });
 
     /* Logic for user login */
@@ -26,22 +26,30 @@ const AuthForm = (props) => {
         const response = await fetch("/api/auth/login", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 email: loginCredentials.email,
-                password: loginCredentials.password,
-            }),
+                password: loginCredentials.password
+            })
         });
 
         const json = await response.json();
         console.log(json);
+
+        if (json.success) {
+            // Saving auth token and redirect to home
+            localStorage.setItem("token", json.authToken);
+            navigate("/notes");
+        } else {
+            alert("Something went wrong");
+        }
     };
 
     const onLoginChange = (event) => {
         setLoginCredentials({
             ...loginCredentials,
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         });
     };
 
@@ -52,13 +60,13 @@ const AuthForm = (props) => {
         const response = await fetch("/api/auth/createuser", {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify({
                 name: signupCredentials.name,
                 email: signupCredentials.email,
-                password: signupCredentials.password,
-            }),
+                password: signupCredentials.password
+            })
         });
 
         const json = await response.json();
@@ -67,7 +75,7 @@ const AuthForm = (props) => {
         if (json.success) {
             // Saving auth token and redirect to home
             localStorage.setItem("token", json.authToken);
-            navigate("/home");
+            navigate("/notes");
         } else {
             alert("Something went wrong");
         }
@@ -76,7 +84,7 @@ const AuthForm = (props) => {
     const onSignupChange = (event) => {
         setSignupCredentials({
             ...signupCredentials,
-            [event.target.name]: event.target.value,
+            [event.target.name]: event.target.value
         });
     };
 

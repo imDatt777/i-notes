@@ -1,6 +1,8 @@
 .form-container {
     height: 100vh;
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
     .background-container {
         .bg {
@@ -41,9 +43,6 @@
     border-radius: 20px;
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
         0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    position: absolute;
-    top: calc(50% - 143px);
-    left: calc(50% - 150px);
 
     .signup-form,
     .login-form {
@@ -71,6 +70,7 @@
                 border-radius: 10px;
                 padding: 5px;
                 margin-top: 20px;
+                cursor: pointer;
             }
         }
 

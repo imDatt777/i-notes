@@ -7,42 +7,40 @@ import "./styles/base.scss";
 
 // Importing components
 import Navbar from "./components/Navbar";
-import Sidebar from "./components/Sidebar";
-import NoteCard from "./components/NoteCard";
-import AddNote from "./components/AddNote";
 import AuthForm from "./components/AuthForm";
+import NotesView from "./components/NotesView";
+
+// Importing state
+import NoteState from "./context/notes/noteState";
 
 const App = () => {
     return (
-        <Router>
-            <div className="App">
-                <Routes>
-                    <Route exact path="/" element={<AuthForm />} />
-                    <Route exact path="/signup" element={<AuthForm isNew />} />
-                    <Route
-                        exact
-                        path="/notes"
-                        element={
-                            <>
-                                <Navbar />
-                                <div className="main-container">
-                                    <div className="sidebar-wrapper">
-                                        <Sidebar />
-                                    </div>
-                                    <AddNote />
-                                    <div className="notes-wrapper">
-                                        <NoteCard />
-                                        <NoteCard />
-                                        <NoteCard />
-                                        <NoteCard />
-                                    </div>
-                                </div>
-                            </>
-                        }
-                    />
-                </Routes>
-            </div>
-        </Router>
+        <>
+            <NoteState>
+                <Router>
+                    <div className="App">
+                        <Routes>
+                            <Route exact path="/" element={<AuthForm />} />
+                            <Route
+                                exact
+                                path="/signup"
+                                element={<AuthForm isNew />}
+                            />
+                            <Route
+                                exact
+                                path="/notes"
+                                element={
+                                    <>
+                                        <Navbar />
+                                        <NotesView />
+                                    </>
+                                }
+                            />
+                        </Routes>
+                    </div>
+                </Router>
+            </NoteState>
+        </>
     );
 };
 

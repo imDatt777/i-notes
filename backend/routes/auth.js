@@ -22,8 +22,8 @@ router.post(
         body("name", "Enter a valid user name").isLength({ min: 3 }),
         body("email", "Enter a valid user email").isEmail(),
         body("password", "Password must be at least 7 characters").isLength({
-            min: 7,
-        }),
+            min: 7
+        })
     ],
     async (req, res) => {
         // Success :- Defining whether Signup is successful or not
@@ -41,7 +41,7 @@ router.post(
             if (user) {
                 return res.status(400).json({
                     success,
-                    error: "Sorry, a user with same email already exists",
+                    error: "Sorry, a user with same email already exists"
                 });
             }
 
@@ -53,14 +53,14 @@ router.post(
             user = await User.create({
                 name: req.body.name,
                 email: req.body.email,
-                password: secPass,
+                password: secPass
             });
 
             // Sending Authentication token
             const data = {
                 user: {
-                    id: user.id,
-                },
+                    id: user.id
+                }
             };
 
             // On successful Signup
@@ -81,7 +81,7 @@ router.post(
     // validations
     [
         body("email", "Enter a valid user email").isEmail(),
-        body("password", "Password cannot be blank").exists(),
+        body("password", "Password cannot be blank").exists()
     ],
     async (req, res) => {
         // Success :- Defining whether login is successful or not
@@ -102,7 +102,7 @@ router.post(
             if (!user) {
                 return res.status(400).json({
                     success,
-                    error: "Please enter valid credentials !",
+                    error: "Please enter valid credentials !"
                 });
             }
 
@@ -114,15 +114,15 @@ router.post(
             if (!passwordCompare) {
                 return res.status(400).json({
                     success,
-                    error: "Please enter valid credentials !",
+                    error: "Please enter valid credentials !"
                 });
             }
 
             // If correct login is attempted with valid credentials
             const data = {
                 user: {
-                    id: user.id,
-                },
+                    id: user.id
+                }
             };
 
             // On Successful login

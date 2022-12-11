@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import NoteContext from "../context/notes/noteContext";
 
 // Import styling
 import "../styles/addnote.scss";
 
 const AddNote = () => {
+    const context = useContext(NoteContext);
+    const { addNote } = context;
     const [isExpanded, setIsExpanded] = useState({ flag: false });
+    const [note, setNote] = useState({ title: "", description: "", tag: "" });
 
     const enableExpand = () => {
         setIsExpanded((prevState) => ({
-            flag: !prevState.flag,
+            flag: !prevState.flag
         }));
+    };
+
+    const onSubmitClick = (event) => {
+        event.preventDefault();
+        addNote(note.title, note.description, note.tag);
+        setNote({ title: "", description: "", tag: "" });
+    };
+
+    const onNoteChange = (event) => {
+        event.preventDefault();
+        setNote({ ...note, [event.target.name]: event.target.value });
     };
 
     return (
@@ -21,9 +36,27 @@ const AddNote = () => {
             {isExpanded.flag && (
                 <div className="expanded">
                     <form>
-                        <input type="text" placeholder="Title" />
-                        <textarea type="text" placeholder="Add a note..." />
-                        <span className="tick"></span>
+                        <input
+                            type="text"
+                            placeholder="Title"
+                            name="title"
+                            onChange={onNoteChange}
+                        />
+                        <textarea
+                            type="text"
+                            placeholder="Add a note..."
+                            name="description"
+                            onChange={onNoteChange}
+                        />
+                        <div className="tag-save">
+                            <input
+                                type="text"
+                                placeholder="Tag"
+                                name="tag"
+                                onChange={onNoteChange}
+                            />
+                            <div className="tick" onClick={onSubmitClick}></div>
+                        </div>
                     </form>
                 </div>
             )}
