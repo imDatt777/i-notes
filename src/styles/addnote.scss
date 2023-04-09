@@ -100,13 +100,24 @@
             outline: none;
         }
 
+        .tick-wrapper {
+            background-color: black;
+            position: relative;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+        }
+
         .tick {
+            position: absolute;
+            top: 25%;
+            left: 35%;
             display: inline-block;
             transform: rotate(45deg);
-            height: 16px;
-            width: 8px;
-            border-bottom: 4px solid #78b13f;
-            border-right: 4px solid #78b13f;
+            height: 10px;
+            width: 5px;
+            border-bottom: 4px solid wheat;
+            border-right: 4px solid wheat;
         }
     }
 }
@@ -114,7 +125,7 @@
 //  Styling for tablet view
 @media (min-width: 426px) and (max-width: 1024px) {
     .create-wrapper {
-        margin: 0 20% 20px;
+        margin: 20px 20%;
     }
     .expanded {
         margin: 20px 20%;

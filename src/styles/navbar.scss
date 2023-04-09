@@ -53,34 +53,6 @@
             display: none;
         }
     }
-
-    .header-profile-section {
-        display: flex;
-        align-items: center;
-        margin-left: auto;
-
-        .setting-icon {
-            height: 20px;
-            width: 20px;
-            margin-right: 40px;
-            cursor: pointer;
-
-            &:hover {
-                background-color: lightgray;
-                border-radius: 50%;
-            }
-        }
-
-        .profile-avatar {
-            .avatar {
-                background-color: wheat;
-                border-radius: 50%;
-                cursor: pointer;
-                height: 28px;
-                width: 28px;
-            }
-        }
-    }
 }
 
 //  Styling for tablet view
@@ -139,21 +111,6 @@
                 }
             }
         }
-
-        .header-profile-section {
-            .setting-icon {
-                height: 22px;
-                width: 22px;
-                padding: 4px;
-            }
-
-            .profile-avatar {
-                .avatar {
-                    height: 36px;
-                    width: 36px;
-                }
-            }
-        }
     }
 }
 
@@ -184,7 +141,7 @@
             justify-content: flex-end;
             padding: 0 15px;
             width: 50%;
-            margin: 0 auto;
+            margin: 0 9%;
 
             .search-icon {
                 padding: 7px;
@@ -222,23 +179,6 @@
                 &:hover {
                     background-color: lightgray;
                     border-radius: 50%;
-                }
-            }
-        }
-
-        .header-profile-section {
-            margin-left: 0;
-
-            .setting-icon {
-                height: 28px;
-                width: 28px;
-                padding: 7px;
-            }
-
-            .profile-avatar {
-                .avatar {
-                    height: 40px;
-                    width: 40px;
                 }
             }
         }

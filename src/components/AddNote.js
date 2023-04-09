@@ -41,12 +41,14 @@ const AddNote = () => {
                             placeholder="Title"
                             name="title"
                             onChange={onNoteChange}
+                            value={note.title}
                         />
                         <textarea
                             type="text"
                             placeholder="Add a note..."
                             name="description"
                             onChange={onNoteChange}
+                            value={note.description}
                         />
                         <div className="tag-save">
                             <input
@@ -54,8 +56,14 @@ const AddNote = () => {
                                 placeholder="Tag"
                                 name="tag"
                                 onChange={onNoteChange}
+                                value={note.tag}
                             />
-                            <div className="tick" onClick={onSubmitClick}></div>
+                            <div className="tick-wrapper">
+                                <div
+                                    className="tick"
+                                    onClick={onSubmitClick}
+                                ></div>
+                            </div>
                         </div>
                     </form>
                 </div>

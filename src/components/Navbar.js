@@ -6,7 +6,6 @@ import "../styles/navbar.scss";
 // Importing assets
 import mainIcon from "../assets/notes-icon.png";
 import searchIcon from "../assets/search-icon.svg";
-import settingIcon from "../assets/setting-icon.svg";
 import crossIcon from "../assets/cross-icon.svg";
 
 const Navbar = () => {
@@ -24,16 +23,6 @@ const Navbar = () => {
                 />
                 <input className="search" placeholder="Search Notes..." />
                 <img className="cross-icon" src={crossIcon} alt="Cross Icon" />
-            </div>
-            <div className="header-profile-section">
-                <img
-                    className="setting-icon"
-                    src={settingIcon}
-                    alt="Setting Icon"
-                />
-                <div className="profile-avatar">
-                    <div className="avatar"></div>
-                </div>
             </div>
         </div>
     );
