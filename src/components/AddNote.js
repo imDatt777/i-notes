@@ -4,7 +4,8 @@ import NoteContext from "../context/notes/noteContext";
 // Import styling
 import "../styles/addnote.scss";
 
-const AddNote = () => {
+const AddNote = (props) => {
+    const { setMessage } = props;
     const context = useContext(NoteContext);
     const { addNote } = context;
     const [isExpanded, setIsExpanded] = useState({ flag: false });
@@ -16,14 +17,28 @@ const AddNote = () => {
         }));
     };
 
+    const noteValidator = () => {
+        if (
+            note.title.length > 0 &&
+            note.description.length > 0 &&
+            note.tag.length > 0
+        ) {
+            addNote(note.title, note.description, note.tag);
+        } else {
+            setMessage("Note fields cannot be empty !");
+        }
+    };
+
     const onSubmitClick = (event) => {
         event.preventDefault();
-        addNote(note.title, note.description, note.tag);
+        noteValidator();
+
         setNote({ title: "", description: "", tag: "" });
     };
 
     const onNoteChange = (event) => {
         event.preventDefault();
+        // setMessage("");
         setNote({ ...note, [event.target.name]: event.target.value });
     };
 

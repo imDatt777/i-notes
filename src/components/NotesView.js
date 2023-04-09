@@ -7,7 +7,8 @@ import NoteContext from "../context/notes/noteContext";
 // Import styling
 import "../styles/notesview.scss";
 
-const NotesView = () => {
+const NotesView = (props) => {
+    const { setMessage } = props;
     const context = useContext(NoteContext);
     const { notes, fetchNotes, editNote, deleteNote } = context;
 
@@ -21,7 +22,7 @@ const NotesView = () => {
 
     return (
         <div className="main-container">
-            <AddNote />
+            <AddNote setMessage={setMessage} />
             <div className="notes-wrapper">
                 {notes.map((note) => {
                     return (
