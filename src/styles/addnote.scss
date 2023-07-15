@@ -102,10 +102,11 @@
 
         .tick-wrapper {
             background-color: black;
-            position: relative;
             border-radius: 50%;
-            width: 30px;
+            cursor: pointer;
             height: 30px;
+            position: relative;
+            width: 30px;
         }
 
         .tick {

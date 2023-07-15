@@ -14,6 +14,7 @@ const NotesView = (props) => {
 
     // eslint-disable-next-line
     const [values, setValues] = useState({});
+    const [isEdit, setIsEdit] = useState(false);
 
     useEffect(() => {
         fetchNotes();
@@ -21,9 +22,14 @@ const NotesView = (props) => {
     }, []);
 
     return (
-        <div className="main-container">
-            <AddNote setMessage={setMessage} />
-            <div className="notes-wrapper">
+        <div className='main-container'>
+            <AddNote
+                setMessage={setMessage}
+                values={values}
+                isEdit={isEdit}
+                setIsEdit={setIsEdit}
+            />
+            <div className='notes-wrapper'>
                 {notes.map((note) => {
                     return (
                         <NoteCard
@@ -32,6 +38,7 @@ const NotesView = (props) => {
                             editNote={editNote}
                             deleteNote={deleteNote}
                             setValues={setValues}
+                            setIsEdit={setIsEdit}
                         />
                     );
                 })}
